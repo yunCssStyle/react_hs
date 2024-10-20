@@ -1,0 +1,785 @@
+.studio_cont {
+  height: calc(100% - 74px);
+  width: 100%;
+  min-width: 1450px;
+  background-color: $black_555;
+  position: relative;
+  overflow: hidden;
+  @include flex($justify: space-between, $align: flex-start, $wrap: nowrap);
+  & > div {
+    height: 100%;
+    &.right {
+      position: absolute;
+      width: 284px;
+      height: calc(100% - 85px);
+      background-color: $black_333;
+      right: -264px;
+      transition: all 0.3s ease-in-out;
+      &.open {
+        right: 0;
+        .right_cont {
+          .open_btn {
+            rotate: 0deg;
+          }
+        }
+      }
+    }
+  }
+  .settings_cont {
+    padding: 0 20px 20px;
+    h2 {
+      padding-top: 33px;
+      color: var(--White, #fff);
+      @include fontSetting($size: 20px, $weight: 700, $line: 26.6px, $color: $white);
+
+      &.toggle {
+        cursor: pointer;
+
+        &::before {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          margin-right: 12px;
+          content: '';
+          @include backgroundImage($url: 'assets/images/studio/polygon.png', $width: 12px, $height: 12px, $size: 100%);
+        }
+
+        &.close::before {
+          transform: rotate(270deg);
+        }
+      }
+    }
+
+    ul {
+      li {
+        padding-top: 30px;
+        &:first-child {
+          padding-top: 24px;
+        }
+        label {
+          @include flex($justify: start);
+          @include fontSetting($weight: 700, $line: 21.28px, $color: $black_555);
+        }
+        & > div {
+          padding-top: 8px;
+          input {
+            padding: 8px 0;
+            width: 100%;
+            border-bottom: 1px solid $black_555;
+            @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+
+            &::placeholder {
+              @include fontSetting($size: 14px, $line: 18.62px, $color: $black_666);
+            }
+
+            &:disabled {
+              color: $black_555;
+            }
+
+            &.keyword {
+              border: none;
+            }
+          }
+          select {
+            padding: 8px 0;
+            width: 100%;
+            border: 0;
+            border-bottom: 1px solid $black_555;
+            background-color: transparent;
+            outline: none;
+            @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+            appearance: none;
+            -webkit-appearance: none; /* 사파리, 크롬 하위버전용 */
+            -moz-appearance: none; /* 사파리, 크롬 하위버전용 */
+            @include backgroundImage($url: 'assets/images/studio/icon_select.png', $position: calc(100% - 7px) center);
+          }
+          .select {
+            .select__menu {
+              border-radius: 0;
+              background-color: $black_555;
+              .select__menu-list {
+                background-color: $black_555;
+                border: 0;
+                padding: 0;
+                .select__option {
+                  background-color: $black_555;
+                  color: $white;
+                  cursor: pointer;
+                  transition: all 0.3s ease-in-out;
+                  &:hover {
+                    background-color: #3e3e3e;
+                  }
+                }
+                .select__option.select__option--is-selected {
+                  background-color: #3e3e3e;
+                  color: $white;
+                  &::after {
+                    display: none;
+                  }
+                }
+              }
+            }
+            .select__control {
+              padding: 5px 0;
+              min-height: 30px;
+              background-color: transparent;
+              border: 0;
+              border-radius: 0;
+              border-bottom: 1px solid $black_555;
+              outline: none;
+              cursor: pointer;
+              @include backgroundImage(
+                $url: 'assets/images/studio/icon_select.png',
+                $position: calc(100% - 7px) center,
+                $size: 16px
+              );
+              &.select__control--menu-is-open {
+                @include backgroundImage(
+                  $url: 'assets/images/studio/icon_select_open.png',
+                  $position: calc(100% - 7px) center,
+                  $size: 16px
+                );
+              }
+              &:hover {
+                border-bottom: 1px solid $black_555;
+              }
+              &.select__control--is-focused {
+                box-shadow: none;
+                border-bottom: 1px solid $black_555;
+              }
+
+              .select__value-container {
+                padding: 0;
+                .select__single-value {
+                  @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+                }
+                .select__placeholder {
+                  @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+                }
+              }
+              .select__indicators {
+                display: none;
+              }
+
+              &.select__control--is-disabled {
+                @include backgroundImage(
+                  $url: 'assets/images/studio/icon_select_disabled.png',
+                  $position: calc(100% - 7px) center,
+                  $size: 16px
+                );
+                .select__value-container {
+                  .select__single-value {
+                    @include fontSetting($size: 14px, $line: 18.62px, $color: $black_777);
+                  }
+                  .select__placeholder {
+                    @include fontSetting($size: 14px, $line: 18.62px, $color: $black_777);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        textarea {
+          background-color: transparent;
+          border-color: $black_555;
+          width: 100%;
+          resize: none;
+          font-size: 14px;
+          padding: 20px;
+          scroll-padding: 20px;
+          font-family: 'Pretendard';
+          @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+          min-height: 120px;
+          margin-top: 20px;
+
+          &:disabled {
+            color: $black_555;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .range-container {
+          display: flex;
+          flex-direction: row;
+          align-items: end;
+
+          .left {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+
+            label {
+              margin-bottom: 15px;
+            }
+          }
+
+          .range-input {
+            border: solid 1px $black_555;
+            width: 40px;
+            height: 34px;
+            margin-left: 20px;
+            text-align: center;
+
+            &::-webkit-inner-spin-button {
+              appearance: none;
+              -moz-appearance: none;
+              -webkit-appearance: none;
+            }
+          }
+        }
+
+        .keyword-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-bottom: 1px solid $black_555;
+
+          .search {
+            margin-bottom: 8px;
+            width: 20px;
+            height: 20px;
+            @include backgroundImage(
+              $url: 'assets/images/studio/icon_search.png',
+              $size: 16px,
+              $width: 20px,
+              $height: 20px
+            );
+          }
+        }
+      }
+    }
+    button {
+      margin-top: 40px;
+      @include buttonStyle(
+        $width: 100%,
+        $height: 40px,
+        $color: $white,
+        $bgColor: $black_666,
+        $radius: 30px,
+        $size: 14px,
+        $weight: 700,
+        $line: 18.62px
+      );
+      &:disabled {
+        cursor: none;
+        @include buttonStyle(
+          $width: 100%,
+          $height: 40px,
+          $color: #888888,
+          $bgColor: #3e3e3e,
+          $radius: 30px,
+          $size: 14px,
+          $weight: 700,
+          $line: 18.62px
+        );
+      }
+    }
+  }
+  .right_cont {
+    position: relative;
+    height: 100%;
+    .open_btn {
+      position: absolute;
+      top: 26px;
+      left: -14px;
+      background-color: $black_333;
+      border-radius: 100%;
+      overflow: hidden;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+      @include backgroundImage($width: 28px, $height: 28px, $url: 'assets/images/studio/right_open.png', $size: 16px);
+      cursor: pointer;
+      rotate: 180deg;
+    }
+    .right_contScr {
+      padding: 0 23px 0;
+      height: calc(100% - 30px);
+      position: relative;
+    }
+    .reset_btn {
+      position: absolute;
+      top: 26px;
+      right: 23px;
+      @include backgroundImage($width: 24px, $height: 24px, $url: 'assets/images/studio/icon_reset.png', $size: 24px);
+      cursor: pointer;
+    }
+    .right_tab {
+      height: 100%;
+      .react-tabs__tab-list {
+        padding: 26px 23px 0;
+        @include flex($justify: flex-start);
+        li {
+          @include fontSetting($size: 20px, $weight: 700, $line: 26.6px, $color: $black_555);
+          cursor: pointer;
+          outline: none;
+          margin-left: 24px;
+          &:first-child {
+            margin-left: 0;
+          }
+          &.react-tabs__tab--selected {
+            color: $white;
+          }
+        }
+      }
+    }
+    .react-tabs__tab-panel {
+      height: calc(100% - 26px);
+      display: none;
+      &.react-tabs__tab-panel--selected {
+        display: block;
+      }
+    }
+    .copy_list {
+      padding-bottom: 20px;
+      li {
+        margin-top: 20px;
+        padding: 20px 20px 15px;
+        border: 1px solid $black_555;
+        .copy_title {
+          @include fontSetting($size: 14px, $line: 18.62px, $color: $black_bbb);
+        }
+        .copy_save {
+          margin-top: 8px;
+          text-align: right;
+          button {
+            display: inline-block !important;
+            @include buttonStyle(
+              $width: 112px,
+              $height: 30px,
+              $color: $black_777,
+              $bgColor: transparent,
+              $radius: 30px,
+              $size: 12px,
+              $weight: 700,
+              $line: 26.6px,
+              $border_w: 1px,
+              $borderColor: $black_777
+            );
+          }
+        }
+        &:hover {
+          border: 1px solid $white;
+          .copy_title {
+            color: $white;
+          }
+        }
+      }
+    }
+    .history_list {
+      padding-bottom: 20px;
+      li {
+        margin-top: 20px;
+        padding: 26px 19px 20px;
+        border: 1px solid $black_56;
+        background: #454545;
+        position: relative;
+        .del_btn {
+          position: absolute;
+          top: 11px;
+          right: 13px;
+          @include backgroundImage(
+            $width: 16px,
+            $height: 16px,
+            $url: 'assets/images/studio/icon_delete.png',
+            $size: 16px
+          );
+          background-color: transparent;
+          border: 0;
+          cursor: pointer;
+        }
+        .history_date {
+          @include fontSetting($size: 10px, $line: 13.3px, $color: $black_777);
+          margin-bottom: 5px;
+        }
+        .history_content {
+          @include flex($justify: flex-start, $align: flex-start, $wrap: nowrap);
+          .img {
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-right: 12px;
+          }
+          .tx {
+            flex-grow: 1;
+            @include fontSetting($size: 12px, $line: 15.96px, $color: $black_bbb);
+          }
+        }
+        .tag {
+          padding-top: 8px;
+          span {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: #3e3e3e;
+            margin-top: 8px;
+            margin-right: 8px;
+            @include fontSetting($size: 12px, $line: 18.62px, $color: $black_bbb);
+          }
+        }
+      }
+    }
+  }
+  .bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 20px;
+    background: $white;
+    height: 84px;
+    z-index: 20;
+    @include flex($justify: space-between);
+    .reset_btn {
+      cursor: pointer;
+      @include fontSetting($size: 14px, $line: 24px, $color: $black_333);
+      &::before {
+        content: '';
+        display: inline-block;
+        @include backgroundImage(
+          $width: 24px,
+          $height: 24px,
+          $url: 'assets/images/studio/icon_reset1.png',
+          $size: 24px
+        );
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
+        margin-right: 10px;
+      }
+    }
+    .btns {
+      @include flex($justify: flex-start);
+      button {
+        margin-right: 8px;
+        &:last-child {
+          margin-right: 0;
+        }
+        &.save_btn {
+          @include buttonStyle(
+            $width: 179px,
+            $height: 50px,
+            $color: $black_333,
+            $bgColor: $white,
+            $radius: 30px,
+            $size: 14px,
+            $weight: 700,
+            $line: 18.62px,
+            $border_w: 1px,
+            $borderColor: $black_333
+          );
+        }
+        &.publish_btn {
+          &::before {
+            content: '';
+            display: inline-block;
+            @include backgroundImage(
+              $width: 24px,
+              $height: 24px,
+              $url: 'assets/images/studio/icon_export.png',
+              $size: 24px
+            );
+            margin-right: 10px;
+            position: relative;
+            top: -1px;
+          }
+          @include buttonStyle(
+            $width: 158px,
+            $height: 50px,
+            $color: $white,
+            $bgColor: $black,
+            $radius: 30px,
+            $size: 14px,
+            $weight: 700,
+            $line: 18.62px,
+            $border_w: 1px,
+            $borderColor: $black
+          );
+        }
+      }
+    }
+  }
+  .editor_cont {
+    padding: 20px;
+    height: calc(100% - 85px);
+    flex-grow: 1;
+    transition: all 0.3s ease-in-out;
+    padding-right: 40px;
+    &.open {
+      padding-right: 304px;
+    }
+    .editor_head {
+      @include flex($justify: space-between);
+      .editor_t {
+        border: 1px solid $black_777;
+        width: 40px;
+        height: 40px;
+        margin-right: 8px;
+        @include flex();
+        & > span {
+          width: 28px;
+          height: 28px;
+          @include flex();
+          font-family: Times;
+          color: $white;
+          font-size: 20px;
+        }
+      }
+      .editor_view {
+        @include flex();
+        .zome {
+          @include flex();
+          border: 1px solid $black_777;
+          height: 40px;
+          margin-right: 8px;
+          padding: 0 5px;
+          .zome_out {
+            @include backgroundImage(
+              $width: 28px,
+              $height: 28px,
+              $url: 'assets/images/studio/icon_zome_out.png',
+              $size: 20px
+            );
+          }
+          .zome_in {
+            @include backgroundImage(
+              $width: 28px,
+              $height: 28px,
+              $url: 'assets/images/studio/icon_zome_in.png',
+              $size: 20px
+            );
+          }
+
+          .number {
+            @include flex(row);
+
+            input {
+              @include fontSetting($size: 14px, $line: 10.62px, $color: $white);
+              width: 80px;
+              text-align: center;
+              &::-webkit-inner-spin-button {
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+              }
+            }
+          }
+
+          .zome_tx {
+            width: 80px;
+            text-align: center;
+            @include fontSetting($size: 14px, $line: 10.62px, $color: $white);
+          }
+        }
+        .full {
+          @include flex();
+          border: 1px solid $black_777;
+          height: 40px;
+          padding: 0 5px;
+          .full_screen {
+            @include backgroundImage(
+              $width: 30px,
+              $height: 30px,
+              $url: 'assets/images/studio/icon_full_screen.png',
+              $size: 30px
+            );
+          }
+        }
+      }
+      .hover {
+        &:hover {
+          cursor: pointer;
+          // background-color: $black_333;
+        }
+        &.selected {
+          background-color: $black_333;
+        }
+      }
+    }
+
+    .ms-container {
+      height: 100%; // 캔버스 세로 꽉 채움
+    }
+
+    .editor_body {
+      background-color: $black_333;
+      height: calc(100% - 58px);
+      margin-top: 18px;
+      position: relative;
+
+      &.height-auto {
+        height: auto;
+      }
+
+      .editor_reset {
+        position: absolute;
+        right: 22px;
+        top: 22px;
+        z-index: 2;
+        @include backgroundImage($width: 40px, $height: 40px, $url: 'assets/images/studio/icon_editor_reset.png');
+        cursor: pointer;
+      }
+
+      // 캔버스 뷰포트 부모의 100%로
+      .canvas-container {
+        position: relative;
+        overflow: hidden;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .select_flie {
+        padding: 20px;
+        height: 100%;
+        width: 100%;
+        @include flex($align: stretch);
+        .flie_cont {
+          flex-grow: 1;
+          @include flex();
+          border: 1px dashed var(--Line-input-black, #555);
+          .download {
+            &::before {
+              content: '';
+              display: block;
+              @include backgroundImage(
+                $width: 24px,
+                $height: 24px,
+                $url: 'assets/images/studio/icon_download.png',
+                $size: 24px
+              );
+              margin: 0 auto 4px;
+            }
+            text-align: center;
+            @include fontSetting($size: 14px, $weight: 400, $line: 18.62px, $color: $white);
+            .select {
+              @include fontSetting($size: 14px, $weight: 700, $line: 18.62px, $color: $white);
+              text-decoration-line: underline;
+            }
+          }
+        }
+      }
+
+      .container {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+.editor_edit {
+  flex-grow: 1;
+  @include flex($justify: flex-start);
+  .edit {
+    border: 1px solid $black_777;
+    height: 40px;
+    padding: 6px 1px;
+    @include flex();
+
+    .item {
+      @include flex();
+      height: 28px;
+      padding: 0 10px;
+      position: relative;
+      @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 1px;
+        height: 17px;
+        background: rgba(255, 255, 255, 0.1);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+      &:first-child {
+        &::before {
+          display: none;
+        }
+      }
+      .pen {
+        @include backgroundImage($width: 10px, $height: 10px, $url: 'assets/images/studio/icon_pen.png', $size: 10px);
+      }
+      .font {
+        @include fontSetting($size: 11px, $line: 10.62px, $color: $white);
+      }
+      .align {
+        @include backgroundImage($width: 18px, $height: 28px, $url: 'assets/images/studio/icon_align.png');
+      }
+      &.list_type {
+        li {
+          @include backgroundImage($width: 28px, $height: 28px, $url: 'assets/images/studio/icon_list_type2.png');
+          margin-left: 1px;
+          &:first-child {
+            @include backgroundImage($width: 28px, $height: 28px, $url: 'assets/images/studio/icon_list_type1.png');
+            margin-left: 0;
+          }
+        }
+      }
+      &.font-type {
+        li {
+          width: 24px;
+          height: 28px;
+          text-align: center;
+          @include flex();
+        }
+        .bold {
+          font-weight: 700;
+        }
+        .italic {
+          font-family: Times;
+          font-style: italic;
+          line-height: 2.074;
+          margin-left: 1px;
+        }
+        .underline {
+          text-decoration: underline;
+          margin-left: 1px;
+        }
+        .through {
+          text-decoration: line-through;
+          margin-left: 1px;
+        }
+      }
+    }
+    .underscore {
+      @include flex($direction: column);
+      &::after {
+        display: block;
+        margin-top: 2px;
+        content: '';
+        width: 12px;
+        height: 2px;
+        border-radius: 2px;
+      }
+    }
+
+    .select {
+      padding-right: 26px;
+      @include backgroundImage(
+        $height: 28px,
+        $url: 'assets/images/studio/icon_edit_up.png',
+        $position: calc(100% - 7px) center,
+        $size: 10px
+      );
+    }
+    .edit_select {
+      &:first-child {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+  .hover {
+    &:hover {
+      cursor: pointer;
+      // background-color: $black_333;
+    }
+  }
+}

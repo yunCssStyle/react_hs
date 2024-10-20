@@ -1,0 +1,123 @@
+.signup {
+  width: 100%;
+  height: 100%;
+  min-width: 700px;
+  @include flex($justify: space-between, $align: stretch, $wrap: nowrap);
+  & > div {
+    height: 100%;
+    flex-grow: 1;
+    @include flex();
+  }
+  .bg {
+    min-width: 250px;
+    background: linear-gradient(264deg, rgba(189, 0, 255, 0.3) 0%, rgba(233, 23, 124, 0.09) 100%);
+  }
+  .cont {
+    width: 730px;
+    min-width: 406px;
+    flex-basis: 406px;
+    .ms-container {
+      width: 100%;
+      height: 100%;
+    }
+    .signup_cont {
+      @include flex();
+      width: 100%;
+      height: 100%;
+    }
+    .signup_box {
+      margin: 0 auto;
+      width: 406px;
+      height: 480px;
+      text-align: left;
+      .title {
+        margin-bottom: 16px;
+        @include fontSetting($size: 32px, $weight: 700, $line: 42.56px);
+      }
+      & > p {
+        @include fontSetting($color: $black_333);
+      }
+      .signup_form {
+        margin-top: 20px;
+        .form_group {
+          padding-top: 40px;
+          label {
+            display: block;
+            margin-bottom: 8px;
+            @include fontSetting($weight: 700, $color: $black_333);
+          }
+          input {
+            width: 100%;
+            padding: 8px 0;
+            border-bottom: 1px solid #dfdfdf;
+            @include fontSetting($size: 14px, $line: 18.62px);
+          }
+          div {
+            position: relative;
+            &::before {
+              content: '';
+              position: absolute;
+              left: 0;
+              bottom: -18px;
+            }
+            &::after {
+              content: '';
+              position: absolute;
+              top: 50%;
+              right: 8px;
+              width: 20px;
+              height: 20px;
+              margin-top: -10px;
+              background-size: cover;
+            }
+          }
+
+          .success {
+            input {
+              border-bottom: 1px solid $green;
+            }
+            &::before {
+              content: 'Success';
+              @include fontSetting($size: 11px, $line: 13.3px, $weight: 500, $color: $green);
+            }
+            &::after {
+              @include backgroundImage($width: 20px, $height: 20px, $url: 'assets/images/login/icon_success.png');
+            }
+          }
+          .error {
+            input {
+              border-bottom: 1px solid $red;
+            }
+            &::before {
+              content: 'Error';
+              @include fontSetting($size: 11px, $line: 13.3px, $weight: 500, $color: $red);
+            }
+            &::after {
+              @include backgroundImage($width: 20px, $height: 20px, $url: 'assets/images/login/icon_error.png');
+            }
+          }
+        }
+        .remember {
+          margin: 40px 0 60px;
+          @include fontSetting($size: 14px, $line: 18.62px, $color: $black_777);
+          @include flex($justify: flex-start);
+          label {
+            cursor: pointer;
+          }
+        }
+        button {
+          @include buttonStyle(
+            $width: 100%,
+            $height: 50px,
+            $color: $white,
+            $bgColor: $black,
+            $radius: 30px,
+            $size: 14px,
+            $weight: 700,
+            $line: 18.62px
+          );
+        }
+      }
+    }
+  }
+}

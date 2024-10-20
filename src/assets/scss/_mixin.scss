@@ -1,0 +1,80 @@
+@mixin flex($direction: row, $justify: center, $align: center, $wrap: wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin fontSetting($size: 16px, $weight: 400, $color: $black, $line: 21.28px, $style: normal) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  font-style: $style;
+  line-height: $line;
+}
+
+@mixin buttonStyle(
+  $width: 100%,
+  $height: 48px,
+  $color: $white,
+  $bgColor: $black,
+  $radius: 4px,
+  $size: 16px,
+  $weight: 700,
+  $line: 21.28px,
+  $style: normal,
+  $border_w: 0,
+  $borderColor: $black,
+  $align: center
+) {
+  outline: none;
+  border: $border_w solid $borderColor;
+  width: $width;
+  height: $height;
+  color: $color;
+  background-color: $bgColor;
+  border-radius: $radius;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line;
+  font-style: $style;
+  text-align: $align;
+  cursor: pointer;
+  @include flex();
+}
+
+@mixin backgroundImage(
+  $width: auto,
+  $height: auto,
+  $url: '',
+  $position: center center,
+  $repeat: no-repeat,
+  $size: auto
+) {
+  width: $width;
+  height: $height;
+  background-image: url($url);
+  background-position: $position;
+  background-repeat: $repeat;
+  background-size: $size;
+}
+
+@mixin menuOverflow() {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height: 30px;
+  height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  // word-break: keep-all;
+  display: block;
+  white-space: nowrap;
+  word-break: break-all;
+//   background-color: black;
+}
+
+

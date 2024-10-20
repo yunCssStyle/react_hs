@@ -1,0 +1,389 @@
+.save_modal {
+  padding-top: 30px;
+  .create {
+    margin-top: 40px;
+    padding-left: 34px;
+  }
+  .modal_btns {
+    border-top: 1px solid #dfdfdf;
+    padding-top: 20px;
+
+    .Save:disabled {
+      background-color: #dfdfdf;
+      border-color: #dfdfdf;
+      color: $white;
+    }
+  }
+}
+
+.create {
+  .create_folder {
+    cursor: pointer;
+    @include buttonStyle(
+      $width: 113px,
+      $height: 30px,
+      $color: $black_333,
+      $bgColor: #dfdfdf,
+      $radius: 20px,
+      $size: 12px,
+      $weight: 700,
+      $line: 26.6px
+    );
+  }
+}
+.location {
+  @include flex();
+  .tx {
+    @include fontSetting($size: 14px, $line: 21.28px, $color: $black_bbb);
+  }
+  .directory {
+    position: relative;
+    background: #f8f8f8;
+    width: 304px;
+    height: 40px;
+    margin: 0 8px;
+    .directory_list {
+      background: #f8f8f8;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.07);
+      padding: 3px;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      width: 100%;
+      z-index: 100;
+      ul {
+        .folder {
+          overflow: hidden;
+          white-space: nowrap;
+
+          @include fontSetting($size: 16px, $line: 21.28px, $color: $black_333);
+          cursor: pointer;
+          &:hover,
+          &.on {
+            background-color: #e0eae3;
+          }
+          margin-top: 3px;
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+    .folder {
+      overflow: hidden;
+      white-space: nowrap;
+
+      @include flex($justify: flex-start);
+      padding-left: 57px;
+      @include backgroundImage(
+        $height: 40px,
+        $url: 'assets/images/modal/icon_folder.png',
+        $position: 17px center,
+        $size: 24px
+      );
+      @include fontSetting($size: 14px, $line: 21.28px, $color: $black_555);
+      padding-right: 40px;
+      div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    .updown {
+      @include flex($direction: column);
+      position: absolute;
+      right: 11px;
+      top: 11px;
+      .up {
+        cursor: pointer;
+        @include backgroundImage(
+          $width: 8px,
+          $height: 8px,
+          $url: 'assets/images/modal/icon_directory_up.png',
+          $size: 8px 6px
+        );
+      }
+      .down {
+        cursor: pointer;
+        margin-top: 2px;
+        @include backgroundImage(
+          $width: 8px,
+          $height: 8px,
+          $url: 'assets/images/modal/icon_directory_down.png',
+          $size: 8px 6px
+        );
+      }
+    }
+  }
+  .btn {
+    background-color: $black_333;
+    cursor: pointer;
+    @include backgroundImage($width: 40px, $height: 40px, $url: 'assets/images/modal/icon_arr.png', $size: 16px);
+    &.open {
+      rotate: 180deg;
+    }
+  }
+}
+
+.new_folder {
+  padding: 20px 23px 0;
+  .folder {
+    @include flex();
+    margin: 16px 0;
+    .ti {
+      @include fontSetting($size: 14px, $line: 21.28pxpx, $color: $black_bbb);
+      margin-right: 10px;
+    }
+    input {
+      width: 304px;
+      height: 40px;
+      background: #f8f8f8;
+      text-indent: 10px;
+      color: $black_333;
+      &::placeholder {
+        @include fontSetting($size: 14px, $line: 18.62px, $color: #bbb);
+      }
+    }
+  }
+}
+.evaluation {
+  padding-top: 40px;
+  .evaluation_box {
+    background: #f8f8f8;
+    width: 642px;
+    margin: 0 -20px -20px;
+    padding: 20px 33px 40px;
+    .radio_text {
+      @include flex($justify: flex-end);
+      margin-bottom: 20px;
+      padding: 0 9px 0 0;
+      span {
+        width: 58px;
+        text-align: center;
+        @include fontSetting($size: 16px, $weight: 700, $line: 21.28px);
+        color: $green;
+        &:last-of-type {
+          color: $red;
+        }
+      }
+    }
+    ul {
+      li {
+        margin-top: 8px;
+        @include flex($justify: space-between, $align: start);
+        background-color: $white;
+        padding: 10px 9px 10px 27px;
+        min-height: 40px;
+        &:first-child {
+          margin-top: 0;
+        }
+
+        .content {
+          @include flex($justify: start);
+          word-break: break-all;
+          width: 370px;
+        }
+        .radio {
+          @include flex();
+          span {
+            text-align: center;
+            width: 58px;
+            position: relative;
+            overflow: hidden;
+            label {
+              border: 1px solid $black_bbb;
+              width: 20px;
+              height: 20px;
+              border-radius: 100%;
+              margin: 0 auto;
+              @include flex();
+              cursor: pointer;
+            }
+            input {
+              position: absolute;
+              left: -50000px;
+              &:checked + label {
+                background-color: #f8f8f8;
+                &::before {
+                  content: '';
+                  width: 10px;
+                  height: 10px;
+                  background-color: #3e3e3e;
+                  border-radius: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.folder_box {
+  margin: -46px -20px -20px;
+  @include flex($align: stretch);
+  .folder_list {
+    background: #f8f8f8;
+    width: 189px;
+    border-right: 1px solid #dfdfdf;
+    .ti {
+      padding: 32px 0 6px 20px;
+      @include fontSetting($size: 14px, $line: 21.28px, $color: $black_bbb);
+    }
+    li {
+      overflow: hidden;
+      position: relative;
+      @include flex($justify: flex-start);
+      padding-left: 20px;
+      height: 36px;
+      @include fontSetting($size: 14px, $line: 18.62px, $color: $black_555);
+      &::before {
+        content: ' ';
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 16px;
+        @include backgroundImage(
+          $width: 24px,
+          $height: 24px,
+          $url: 'assets/images/modal/icon_folder.png',
+          $position: center,
+          $size: 24px
+        );
+      }
+      cursor: pointer;
+      // &:hover,
+      &.on {
+        background-color: #e0eae3;
+      }
+      & > div {
+        width: 64%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .folder_location {
+    padding-top: 22px;
+  }
+  .folders {
+    margin-top: 20px;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    @include flex($align: stretch);
+    & > div {
+      width: 274px;
+      height: 239px;
+      border-right: 1px solid #dfdfdf;
+      .ms-container {
+        height: 239px;
+      }
+      ul {
+        @include flex($justify: flex-start, $direction: column, $align: start);
+      }
+      li {
+        position: relative;
+        padding-left: 57px;
+        min-width: 272px;
+        @include flex($justify: flex-start);
+        @include backgroundImage(
+          $height: 36px,
+          $url: 'assets/images/modal/icon_folder.png',
+          $position: 17px center,
+          $size: 24px
+        );
+        @include fontSetting($size: 14px, $line: 18.62px, $color: $black_555);
+        cursor: pointer;
+        white-space: nowrap;
+        // &:hover {
+        //   background-color: #f8f8f8;
+        // }
+        & > div {
+          padding-right: 30px;
+        }
+        &.on {
+          background-color: #f8f8f8;
+        }
+        &.next {
+          &::after {
+            content: '';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            @include backgroundImage(
+              $width: 12px,
+              $height: 12px,
+              $url: 'assets/images/modal/icon_folder_next.png',
+              $size: 12px
+            );
+          }
+        }
+      }
+    }
+  }
+  .folder_btn {
+    padding: 24px 15px;
+    @include flex($justify: space-between);
+    .modal_btns {
+      margin: 0;
+    }
+  }
+}
+.modal_box {
+  .title {
+    text-align: center;
+    @include fontSetting($size: 24px, $weight: 700, $line: 31.92px, $color: $black);
+    &.small {
+      @include fontSetting($size: 16px, $weight: 700, $line: 21.28pxpx, $color: $black_333);
+    }
+    &.text_left {
+      text-align: left;
+    }
+  }
+  .titles {
+    text-align: center;
+    @include fontSetting($size: 14px, $line: 18.62px, $color: $black_333);
+    margin: 6px auto 36px;
+  }
+  .modal_btns {
+    margin: 40px -20px 0;
+    text-align: center;
+    @include flex();
+    button {
+      margin: 0 6px;
+      @include buttonStyle(
+        $width: 120px,
+        $height: 30px,
+        $color: $black,
+        $radius: 30px,
+        $size: 12px,
+        $weight: 700,
+        $line: 15.96px,
+        $border_w: 1px,
+        $borderColor: $black,
+        $bgColor: $white
+      );
+      &:last-of-type {
+        @include buttonStyle(
+          $width: 120px,
+          $height: 30px,
+          $color: $white,
+          $radius: 30px,
+          $size: 12px,
+          $weight: 700,
+          $line: 15.96px,
+          $border_w: 1px,
+          $borderColor: $black,
+          $bgColor: $black
+        );
+      }
+      &:disabled {
+        background-color: #dfdfdf;
+        border-color: #dfdfdf;
+        color: $white;
+      }
+    }
+  }
+}

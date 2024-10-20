@@ -1,0 +1,1115 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  color: $black;
+  font-size: 14px;
+}
+body {
+  overflow-y: hidden;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+select {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Pretendard';
+}
+ol,
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#root {
+  margin: 0 auto;
+  height: 100%;
+  & > .layout {
+    height: 100%;
+    & > .ms-container {
+      height: calc(100% - 74px);
+    }
+  }
+}
+
+.sub_cont {
+  height: calc(100% - 74px);
+  width: 100%;
+  min-width: 1450px;
+  overflow-y: hidden;
+  @include flex($justify: space-between, $align: flex-start, $wrap: nowrap);
+}
+
+.left_menu {
+  flex-shrink: 0;
+  width: 284px;
+  &.studio_left {
+    height: calc(100% - 85px) !important;
+    background-color: $black_333;
+  }
+  &.sub_left {
+    padding: 20px 20px 180px;
+    height: 100% !important;
+    border-right: 1px solid $black_bf;
+    background: #f8f8f8;
+  }
+  .create_folder {
+    @include buttonStyle(
+      $width: 170px,
+      $height: 50px,
+      $color: $white,
+      $radius: 30px,
+      $size: 14px,
+      $line: 18.62px,
+      $bgColor: $black,
+      $weight: 400
+    );
+    margin-bottom: 30px;
+    &::before {
+      content: '';
+      margin-right: 8px;
+      @include backgroundImage($width: 24px, $height: 24px, $url: 'assets/images/common/icon_create_folder.svg');
+    }
+  }
+  .menu {
+    p {
+      @include fontSetting($color: $black_bbb, $size: 16px, $line: 21.28px, $weight: 700);
+    }
+    .menus {
+      margin: 15px -20px 0;
+      div:not(.depth_menu) {
+        width: 100%;
+
+        &:hover {
+          background: rgba(3, 206, 121, 0.1);
+          > .option {
+            display: block;
+          }
+        }
+      }
+      & > div > div {
+        .label {
+          display: block; 
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          word-break: break-all; 
+          padding: 6px 30px 6px 36px;
+
+          &:hover {
+            white-space: normal;
+          }
+
+          &:not(:hover) {
+            @include menuOverflow();
+          }
+        }
+        @include fontSetting($color: $black_333, $size: 14px, $line: 18.62px, $weight: 700);
+        position: relative;
+        cursor: pointer;
+
+        &.depth {
+          .label {
+            // 1depth
+            &::before {
+              content: '';
+              position: absolute;
+              left: 20px;
+              top: 11px;
+              @include backgroundImage($width: 8px, $height: 8px, $url: 'assets/images/common/icon_depth1.svg');
+            }
+
+            &:not(:hover) {
+              @include menuOverflow();
+            }
+          }
+
+          &.open {
+            .label {
+              &::before {
+                transform: rotate(90deg);
+              }
+            }
+          }
+        }
+        & > div > div {
+          .label {
+            padding: 6px 30px 6px 57px;
+          }
+          @include fontSetting($color: $black_555, $size: 14px, $line: 18.62px, $weight: 400);
+          position: relative;
+          cursor: pointer;
+          &.depth {
+            .label {
+              // 2depth
+              &::before {
+                content: '';
+                position: absolute;
+                left: 41px;
+                top: 11px;
+                transform: rotate(-90deg);
+                @include backgroundImage($width: 8px, $height: 8px, $url: 'assets/images/common/icon_depth2.svg');
+              }
+
+              &:not(:hover) {
+                @include menuOverflow();
+              }
+            }
+            &.open {
+              .label {
+                &::before {
+                  transform: rotate(0deg);
+                }
+              }
+            }
+          }
+
+          & > div > div {
+            .label {
+              // 3depth
+              padding: 6px 30px 6px 82px;
+
+              &:not(:hover) {
+                @include menuOverflow();
+              }
+            }
+            @include fontSetting($color: $black_777, $size: 14px, $line: 18.62px, $weight: 400);
+            position: relative;
+            cursor: pointer;
+            &.depth {
+              .label {
+                &::before {
+                  content: '';
+                  position: absolute;
+                  left: 41px;
+                  top: 11px;
+                  transform: rotate(-90deg);
+                  @include backgroundImage($width: 8px, $height: 8px, $url: 'assets/images/common/icon_depth2.svg');
+                }
+              }
+              &.open {
+                .label {
+                  &::before {
+                    transform: rotate(0deg);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .depth_menu {
+        padding: 0;
+      }
+      .label {
+        display: block;
+      }
+      .option {
+        display: none;
+        position: absolute;
+        right: 12px;
+        top: 8px;
+        @include backgroundImage($width: 14px, $height: 14px, $url: 'assets/images/common/icon_option.svg');
+        &.open {
+          display: block;
+        }
+      }
+    }
+  }
+}
+.option_menu {
+  position: fixed;
+  left: 263px;
+  top: 27px;
+  background: $white;
+  border: 1px solid $black_bf;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.07);
+  min-width: 110px;
+  z-index: 10;
+  li {
+    @include fontSetting($color: $black_555, $line: 18.62px, $size: 14px, $weight: 400);
+    padding: 13px 20px;
+    cursor: pointer;
+  }
+}
+
+.sub_container {
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+  .sub_main {
+    width: 100%;
+    height: calc(100% - 84px);
+    padding: 40px 20px 0;
+    .cont_list {
+      height: calc(100% - 50px);
+      .list_head {
+        @include flex($justify: space-between, $align: stretch);
+        border-bottom: 1px solid $black_bf;
+        @include fontSetting($size: 14px, $line: 21.28px, $color: $black_777, $weight: 700);
+        div {
+          @include flex($justify: flex-start);
+        }
+        .check {
+          justify-content: center;
+        }
+      }
+      .list {
+        display: block;
+        width: 100%;
+        height: calc(100% - 53px);
+      }
+      .list_item {
+        width: 100%;
+        @include flex($justify: space-between, $align: stretch, $wrap: nowrap);
+        @include fontSetting($size: 16px, $line: 21.28px, $color: $black_777, $weight: 400);
+        .img {
+          flex-shrink: 0;
+          width: 94px;
+          height: 94px;
+          margin-right: 20px;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          &.noimg {
+            border: 1px solid $black_bf;
+            background: #f8f8f8;
+          }
+          &.Copy {
+            @include backgroundImage(
+              $width: 94px,
+              $height: 94px,
+              $url: 'assets/images/common/text_img.png',
+              $size: 32px
+            );
+          }
+          &.File {
+            @include backgroundImage(
+              $width: 94px,
+              $height: 94px,
+              $url: 'assets/images/common/file_img.png',
+              $size: 32px
+            );
+          }
+          &.Folder {
+            @include backgroundImage(
+              $width: 94px,
+              $height: 94px,
+              $url: 'assets/images/common/folder_img.png',
+              $size: 32px
+            );
+          }
+        }
+        .title_cont {
+          flex-grow: 1;
+          @include flex($justify: flex-start, $wrap: nowrap);
+        }
+        .name {
+          padding: 11px 0;
+          text-indent: 0;
+        }
+        .copy {
+          padding: 0 60px;
+          span {
+            @include buttonStyle(
+              $width: 83px,
+              $height: 30px,
+              $color: $black_777,
+              $radius: 30px,
+              $size: 12px,
+              $weight: 700,
+              $line: 15.96px,
+              $border_w: 1px,
+              $borderColor: $black_777,
+              $bgColor: $white
+            );
+          }
+        }
+        .tags {
+          margin-top: 8px;
+          @include flex($justify: flex-start);
+          span {
+            @include flex();
+            border-radius: 20px;
+            background: #f8f8f8;
+            padding: 6px 15px;
+            margin-right: 8px;
+            @include fontSetting($size: 12px, $line: 18.62px, $color: $black_777, $weight: 400);
+          }
+        }
+        .text {
+          @include fontSetting($size: 16px, $line: 21.28px, $color: $black_333, $weight: 400);
+          margin-top: 4px;
+        }
+        &.copy {
+          .name {
+            @include flex($justify: space-between, $wrap: nowrap);
+          }
+          .title {
+            @include fontSetting($size: 18px, $line: 23.94px, $color: $black_333, $weight: 400);
+          }
+        }
+        &.text {
+          .name {
+            @include flex($justify: space-between, $wrap: nowrap);
+          }
+          .title {
+            @include fontSetting($size: 18px, $line: 23.94px, $color: $black_333, $weight: 400);
+          }
+        }
+        &.file {
+          .title {
+            @include fontSetting($size: 18px, $line: 23.94px, $color: $black, $weight: 700);
+          }
+        }
+        &.folder {
+          .tx {
+            flex-grow: 1;
+          }
+          .title {
+            // @include flex($justify:start);
+            @include fontSetting($size: 18px, $line: 23.94px, $color: $black, $weight: 700);
+            & > div {
+              // width: calc(100% - 100px);
+              display: inline;
+            }
+            img {
+              margin-left: 12px;
+              cursor: pointer;
+              position: relative;
+              top: 3px;
+            }
+          }
+        }
+      }
+      .check {
+        flex-shrink: 0;
+        width: 76px;
+        padding: 16px 0;
+        @include flex();
+        input[type='checkbox']:checked {
+          @include backgroundImage(
+            $width: 20px,
+            $height: 20px,
+            $url: 'assets/images/common/icon_check.png',
+            $size: 16px
+          );
+          background-color: #f8f8f8;
+        }
+      }
+      .name {
+        flex-grow: 1;
+        text-indent: 114px;
+        @include flex($justify: flex-start, $wrap: nowrap);
+      }
+      .savedate {
+        flex-shrink: 0;
+        width: 190px;
+        margin-left: 20px;
+        @include flex($justify: flex-start);
+      }
+      .type {
+        flex-shrink: 0;
+        width: 64px;
+        @include flex($justify: flex-start);
+      }
+    }
+  }
+  .sub_btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    @include flex($justify: flex-end);
+    padding: 0 20px;
+    height: 84px;
+    border-top: 1px solid $black_bf;
+    background: $white;
+    .delete {
+      @include buttonStyle(
+        $width: 123px,
+        $height: 50px,
+        $color: $black_333,
+        $radius: 30px,
+        $size: 14px,
+        $weight: 700,
+        $line: 18.62px,
+        $border_w: 1px,
+        $borderColor: $black_333,
+        $bgColor: $white
+      );
+    }
+    .move {
+      @include buttonStyle(
+        $width: 123px,
+        $height: 50px,
+        $color: $white,
+        $radius: 30px,
+        $size: 14px,
+        $weight: 700,
+        $border_w: 1px,
+        $borderColor: $black_333,
+        $line: 18.62px,
+        $bgColor: $black
+      );
+      margin-left: 8px;
+    }
+  }
+}
+
+.select {
+  .select__control {
+    padding: 5px 0;
+    min-height: 30px;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid $black_555;
+    outline: none;
+    cursor: pointer;
+    @include backgroundImage($url: 'assets/images/studio/icon_select.png', $position: calc(100% - 7px) center);
+    &:hover {
+      border-bottom: 1px solid $black_555;
+    }
+    &.select__control--is-focused {
+      box-shadow: none;
+      border-bottom: 1px solid $black_555;
+    }
+
+    .select__value-container {
+      padding: 0;
+      .select__single-value {
+        @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+      }
+      .select__placeholder {
+        @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+      }
+    }
+    .select__indicators {
+      display: none;
+    }
+  }
+  .color {
+    & > div {
+      margin-top: -30px;
+    }
+  }
+  .no-color {
+    background-color: #3e3e3e;
+    height: 35px !important;
+    line-height: 35px;
+    text-indent: 20px;
+    position: relative;
+    &.on {
+      &::after {
+        //editor_select
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -8px;
+        content: '';
+        display: inline-block;
+        @include backgroundImage(
+          $width: 16px,
+          $height: 16px,
+          $url: 'assets/images/common/editor_select.png',
+          $size: 16px
+        );
+      }
+    }
+  }
+}
+
+.edit_select {
+  text-align: left;
+  @include flex($justify: flex-start);
+  position: relative;
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 17px;
+    background: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  .editselect {
+    padding-right: 0;
+    width: 100%;
+    .select__control {
+      width: 100%;
+    }
+  }
+  .select__menu {
+    border-radius: 0;
+    background-color: $black_333;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
+    margin-top: -26px;
+    overflow: hidden;
+    .select__menu-list {
+      background-color: $black_333;
+      border: 0;
+      padding: 0;
+      margin-right: -18px;
+      margin-top: 0px;
+      .select__option {
+        background-color: $black_333;
+        color: $white;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        padding: 10px 12px;
+        &:hover {
+          background-color: #3e3e3e;
+        }
+      }
+      .select__option.select__option--is-selected {
+        background-color: #3e3e3e;
+        color: $white;
+        &::after {
+          //editor_select
+          position: absolute;
+          right: 5px;
+          @include backgroundImage(
+            $width: 16px,
+            $height: 16px,
+            $url: 'assets/images/common/editor_select.png',
+            $size: 16px
+          );
+        }
+      }
+      .text.select__option.select__option--is-selected {
+        &::after {
+          position: absolute;
+          right: 27px;
+        }
+      }
+    }
+  }
+  .select__control {
+    padding: 0 25px 0 0;
+    min-height: 30px;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid $black_555;
+    outline: none;
+    cursor: pointer;
+    @include backgroundImage(
+      $url: 'assets/images/studio/editor_select.png',
+      $position: calc(100% - 7px) center,
+      $size: 10px
+    );
+    &.select__control--menu-is-open {
+      @include backgroundImage(
+        $url: 'assets/images/studio/editor_select.png',
+        $position: calc(100% - 7px) center,
+        $size: 10px
+      );
+    }
+    &:hover {
+      border-bottom: 1px solid $black_555;
+    }
+    &.select__control--is-focused {
+      box-shadow: none;
+      border-bottom: 1px solid $black_555;
+    }
+
+    .select__value-container {
+      padding: 0;
+      .select__single-value {
+        @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+      }
+      .select__placeholder {
+        @include fontSetting($size: 14px, $line: 18.62px, $color: $white);
+      }
+    }
+    .select__indicators {
+      display: none;
+    }
+  }
+}
+.select__menu {
+  border: 0px solid red;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0) !important;
+  border-radius: 0;
+  .select__menu-list {
+    margin-top: -5px;
+    border: 2px solid red;
+    border-color: transparent;
+    box-shadow: none;
+    border: 1px solid $black_bf;
+    outline: none;
+    background: $white;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.07) !important;
+    border-radius: 0;
+    .select__option {
+      @include fontSetting($size: 14px, $color: $black_555, $line: 18.62px);
+      &:hover {
+        background: rgba(3, 206, 121, 0.1);
+      }
+      &.select__option--is-selected {
+        background: rgba(3, 206, 121, 0.1);
+        @include flex($justify: flex-start);
+        &::after {
+          content: '';
+          margin-left: 10px;
+          @include backgroundImage($width: 16px, $height: 16px, $url: 'assets/images/common/select_check.svg');
+        }
+      }
+    }
+  }
+}
+
+.sketch-picker {
+  border-radius: 0 !important;
+}
+
+.sorting {
+  @include flex($justify: space-between);
+  margin-bottom: 20px;
+  .fiiter {
+    flex-shrink: 0;
+    width: 87px;
+    position: relative;
+    .fiiter_btn {
+      width: 87px;
+      height: 30px;
+      border: 1px solid $black_bf;
+      cursor: pointer;
+      @include flex();
+      &::before {
+        content: '';
+        margin-right: 8px;
+        @include backgroundImage($width: 20px, $height: 20px, $url: 'assets/images/common/icon_fiiter.svg');
+      }
+    }
+    ul {
+      position: absolute;
+      top: 33px;
+      border: 1px solid $black_bf;
+      background: $white;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.07);
+      padding: 11px 20px;
+      min-width: 110px;
+      li {
+        @include flex($justify: flex-start);
+        padding: 8px 0;
+        input[type='checkbox']:checked {
+          @include backgroundImage(
+            $width: 20px,
+            $height: 20px,
+            $url: 'assets/images/common/icon_check.png',
+            $size: 16px
+          );
+          background-color: #f8f8f8;
+        }
+      }
+    }
+  }
+  .fiiter_tag {
+    flex-grow: 1;
+    padding-left: 40px;
+    span {
+      border-radius: 20px;
+      background: #c41bff;
+      display: inline-flex;
+      height: 30px;
+      padding: 10px 15px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      margin-left: 8px;
+      @include fontSetting($size: 14px, $color: $white, $line: 18.62px);
+      i {
+        @include backgroundImage($width: 16px, $height: 16px, $url: 'assets/images/common/tag_close.svg');
+        cursor: pointer;
+      }
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+  .select {
+    flex-shrink: 0;
+    .select__control {
+      border: 1px solid $black_bf;
+      padding: 0;
+      @include backgroundImage($url: 'assets/images/login/chevron-up.svg', $position: calc(100% - 7px) center);
+      .select__single-value {
+        width: 92px;
+        @include fontSetting($size: 14px, $color: $black_333, $line: 18.62px);
+        text-indent: 9px;
+      }
+      .select__input {
+        text-indent: -10px;
+      }
+    }
+  }
+  .select__menu {
+    border-radius: 0;
+    min-width: 110px;
+    left: auto;
+    right: 0;
+  }
+}
+
+input {
+  outline: none;
+  border: none;
+  background: none;
+  font-family: 'Pretendard';
+  &::placeholder {
+    @include fontSetting($size: 14px, $color: $black_bbb);
+  }
+  &[type='checkbox'] {
+    margin-right: 8px;
+    border: 1px solid $black_bf;
+    border-radius: 0;
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    cursor: pointer;
+    &:checked {
+      @include backgroundImage($width: 20px, $height: 20px, $url: 'assets/images/login/icon_check.png');
+      background-size: cover;
+    }
+  }
+}
+
+.header {
+  height: 74px;
+  @include flex($justify: space-between);
+  padding: 0 20px;
+  border-bottom: 1px solid #dfdfdf;
+  h1 {
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .cont {
+    flex-grow: 1;
+    @include flex($justify: space-between);
+    .menu {
+      margin-left: 57px;
+      & > ul {
+        @include flex($justify: flex-start);
+        & > li {
+          @include fontSetting($color: $black_333, $size: 16px, $line: 21.28px);
+          padding: 20px 40px;
+          cursor: pointer;
+          &.depth {
+            position: relative;
+            @include flex();
+            &::after {
+              content: '';
+              margin-left: 8px;
+              @include backgroundImage($width: 16px, $height: 16px, $url: 'assets/images/login/chevron-up.svg');
+            }
+            ul {
+              opacity: 1;
+              position: absolute;
+              left: 20px;
+              top: -226px;
+              border: 1px solid $black_bf;
+              background: $white;
+              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.07);
+              min-width: 110px;
+              transition: opacity 0.3s ease-in-out;
+              z-index: 10;
+              top: 46px;
+              li {
+                a {
+                  display: block;
+                  padding: 14px 20px;
+                  @include fontSetting($color: $black_555, $size: 14px, $line: 18.62px);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .myinfo {
+      position: relative;
+      .name {
+        @include flex($justify: flex-start);
+        @include fontSetting($color: $black_333, $line: 21.28px, $size: 16px);
+        cursor: pointer;
+        span {
+          @include flex();
+          width: 40px;
+          height: 40px;
+          border-radius: 100%;
+          margin-right: 8px;
+          background: linear-gradient(228deg, rgba(151, 0, 204, 0.7) 0%, rgba(254, 0, 91, 0.7) 105.47%);
+          @include fontSetting($color: $white, $line: 14.3px, $size: 15px, $weight: 700);
+        }
+        &::after {
+          content: '';
+          margin-left: 16px;
+          @include backgroundImage($width: 16px, $height: 16px, $url: 'assets/images/login/chevron-up.svg');
+        }
+      }
+      .mymenu {
+        position: absolute;
+        right: -10px;
+        border: 1px solid $black_bf;
+        background: $white;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.07);
+        padding: 8px 20px;
+        transition: opacity 0.3s ease-in-out;
+        min-width: 125px;
+        z-index: 10;
+        top: 34px;
+
+        li {
+          @include fontSetting($color: $black_555, $line: 18.62px);
+          padding: 8px 0;
+          border-bottom: 1px solid $black_bf;
+          text-align: center;
+          &:last-of-type {
+            border-bottom: none;
+          }
+          &.signout {
+            color: $black_777;
+            cursor: pointer;
+          }
+        }
+      }
+      &.open {
+        .name {
+          &::after {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    .signin {
+      color: $black_1E;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 43px;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 150;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  &.open {
+    @include flex();
+  }
+  .alert {
+    display: inline-block;
+    background-color: $white;
+    padding: 46px 20px 20px;
+    position: relative;
+    min-width: 414px;
+    .alert_cont {
+      .description {
+        @include fontSetting($color: $black, $line: 21.28px);
+        text-align: center;
+        @include flex();
+        min-height: 100px;
+
+        span.point {
+          color: $black_bbb;
+          font-weight: 700;
+          max-width: 291px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .buttonBox {
+        text-align: center;
+        @include flex();
+        padding-bottom: 25px;
+        button {
+          margin-left: 12px;
+          &:first-child {
+            margin-left: 0;
+          }
+          &.cancel {
+            @include buttonStyle(
+              $width: 120px,
+              $height: 30px,
+              $color: $black,
+              $radius: 30px,
+              $size: 12px,
+              $weight: 700,
+              $line: 15.96px,
+              $border_w: 1px,
+              $borderColor: $black,
+              $bgColor: $white
+            );
+          }
+          &.ok {
+            @include buttonStyle(
+              $width: 120px,
+              $height: 30px,
+              $color: $white,
+              $radius: 30px,
+              $size: 12px,
+              $weight: 700,
+              $line: 15.96px,
+              $border_w: 1px,
+              $borderColor: $black,
+              $bgColor: $black
+            );
+          }
+        }
+      }
+    }
+  }
+  .iconClose {
+    position: absolute;
+    top: 19px;
+    right: 23px;
+    display: inline-block;
+    text-indent: -9999px;
+    overflow: hidden;
+    @include backgroundImage($width: 24px, $height: 24px, $url: 'assets/images/modal/modal_close.png', $size: 24px);
+    cursor: pointer;
+  }
+}
+
+@keyframes spinnerRotate {
+  0% {
+    transform: rotate(0deg); /* 시작 각도 */
+  }
+  100% {
+    transform: rotate(360deg); /* 끝 각도 (한 바퀴 회전) */
+  }
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -40px 0 0 -40px;
+  z-index: 100;
+  @include backgroundImage($width: 80px, $height: 80px, $url: 'assets/images/common/spinner.png');
+  animation: spinnerRotate 0.8s linear infinite;
+}
+
+.react-tooltip {
+  z-index: 10000;
+}
+
+.tooltip {
+  vertical-align: middle;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background: url('assets/images/studio/information_icon.png') no-repeat center center;
+  background-size: 100% 100%;
+  margin: 0 8px;
+}
+
+.tooltip_tx {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
